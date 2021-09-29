@@ -1,0 +1,19 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Simple password manager API server.",
+  "scripts": {
+    "dev": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/takeMyHands/password-manager-api.git"
+  },
+  "keywords": [],
+  "author": "codeliner96",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/takeMyHands/password-manager-api/issues"
+  },
+  "homepage": "https://github.com/takeMyHands/password-manager-api#readme"
+}
