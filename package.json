@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Simple password manager API server.",
   "scripts": {
-    "dev": ""
+    "dev": "nodemon --exec babel-node ./src/server.js --delay 2"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,22 @@
   "bugs": {
     "url": "https://github.com/takeMyHands/password-manager-api/issues"
   },
-  "homepage": "https://github.com/takeMyHands/password-manager-api#readme"
+  "homepage": "https://github.com/takeMyHands/password-manager-api#readme",
+  "dependencies": {
+    "@graphql-tools/load-files": "^6.4.0",
+    "@graphql-tools/merge": "^8.1.2",
+    "@graphql-tools/schema": "^8.2.0",
+    "apollo-server-core": "^3.3.0",
+    "apollo-server-express": "^3.3.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "graphql": "^15.6.0",
+    "graphql-upload": "^12.0.0",
+    "nodemon": "^2.0.13"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/node": "^7.15.4",
+    "@babel/preset-env": "^7.15.6"
+  }
 }
