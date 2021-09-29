@@ -5,6 +5,12 @@ import { ERROR_MESSAGE_NOT_FOUND } from "../../constants";
 
 export default {
   Mutation: {
+    /**
+     * ### User sign in.
+     * @param {string} email > Unique email.
+     * @param {string} password > Plain password.
+     * @returns Access token.
+     */
     signIn: async (_, { email, password }) => {
       // Find user by email
       const foundUser = await client.user.findFirst({ where: { email } });
