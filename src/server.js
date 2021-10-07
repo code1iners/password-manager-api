@@ -19,8 +19,9 @@ const run = async () => {
     resolvers,
     context: async (ctx) => {
       if (ctx.req) {
+        const { authorization } = ctx.req.headers;
         return {
-          me: await getUserByToken(),
+          me: await getUserByToken(authorization),
           protectedResolver,
         };
       }
@@ -32,6 +33,7 @@ const run = async () => {
 
   app.use(graphqlUploadExpress());
   app.use(logger("tiny"));
+  app.use("/static", express.static("uploads"));
   server.applyMiddleware({
     app,
     path: "/",

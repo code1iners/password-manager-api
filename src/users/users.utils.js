@@ -1,15 +1,20 @@
 import jwt from "jsonwebtoken";
+import client from "../client";
 
 /**
  * ### Get user information by access token.
  * @param {string} token > Access token.
  */
-export const getUserByToken = (token) => {
+export const getUserByToken = async (token) => {
   try {
     if (!token) return null;
-
-    const res = jwt.verify(token, process.env.SECRET_KEY);
-    console.log(res);
+    const { id } = jwt.verify(token, process.env.SECRET_KEY);
+    const foundUser = await client.user.findUnique({ where: { id } });
+    if (foundUser) {
+      return foundUser;
+    } else {
+      throw new Error("Authorization invalid.");
+    }
   } catch (e) {
     console.error(e.message);
     return null;

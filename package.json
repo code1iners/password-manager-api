@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Simple password manager API server.",
   "scripts": {
-    "dev": "nodemon --exec babel-node ./src/server.js --delay 2",
+    "dev": "nodemon --exec babel-node ./src/server.js --delay 1",
     "migrate": "npx prisma migrate dev",
     "studio": "npx prisma studio"
   },
