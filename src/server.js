@@ -41,7 +41,7 @@ const run = async () => {
   });
 
   await new Promise((resolve) => httpServer.listen({ port: PORT }, resolve));
-  console.log(
+  console.info(
     `🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`
   );
 };
