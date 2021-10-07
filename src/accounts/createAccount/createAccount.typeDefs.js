@@ -2,12 +2,12 @@ import { gql } from "apollo-server-core";
 
 export default gql`
   type Mutation {
-    signUp(
-      email: String!
+    createAccount(
+      title: String!
+      subtitle: String
       username: String!
-      firstName: String!
-      lastName: String
       password: String!
+      thumbnail: Upload
     ): MutationResponse!
   }
 `;

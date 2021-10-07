@@ -7,7 +7,7 @@ export default gql`
     hello: String
   }
 
-  type ResultResponse {
+  type MutationResponse {
     ok: Boolean!
     error: String
   }

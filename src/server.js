@@ -34,6 +34,7 @@ const run = async () => {
   app.use(graphqlUploadExpress());
   app.use(logger("tiny"));
   app.use("/static", express.static("uploads"));
+  app.use("/static", express.static("thumbnails"));
   server.applyMiddleware({
     app,
     path: "/",

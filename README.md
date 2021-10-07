@@ -6,8 +6,8 @@ Simple password manager API server powered by Apollo graphql.
 
 - [x] Sign Up.
 - [x] Sign In.
-- [ ] Edit Profile.
-- [ ] Change Avatar (Image Upload).
+- [x] Edit Profile.
+- [x] Change Avatar (Image Upload).
 - [ ] Computed Fields.
 
 ## Account

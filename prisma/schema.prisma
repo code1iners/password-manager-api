@@ -11,13 +11,27 @@ generator client {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  username  String   @unique
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  username  String    @unique
   firstName String
   lastName  String?
   password  String
   avatar    String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  account   Account[]
+}
+
+model Account {
+  id        Int      @id @default(autoincrement())
+  title     String
+  subtitle  String?
+  thumbnail String?
+  username  String
+  password  String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
