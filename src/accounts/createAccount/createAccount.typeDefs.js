@@ -5,7 +5,7 @@ export default gql`
     createAccount(
       title: String!
       subtitle: String
-      username: String!
+      accountName: String!
       password: String!
       thumbnail: Upload
     ): MutationResponse!

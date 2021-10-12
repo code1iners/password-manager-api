@@ -24,14 +24,14 @@ model User {
 }
 
 model Account {
-  id        Int      @id @default(autoincrement())
-  title     String
-  subtitle  String?
-  thumbnail String?
-  username  String
-  password  String
-  user      User     @relation(fields: [userId], references: [id])
-  userId    Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          Int      @id @default(autoincrement())
+  title       String
+  subtitle    String?
+  thumbnail   String?
+  accountName String
+  password    String
+  user        User     @relation(fields: [userId], references: [id])
+  userId      Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
