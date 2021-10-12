@@ -8,7 +8,7 @@ export default {
      * @param {number} id > Account id.
      * @returns Account object.
      */
-    getAccount: protectedResolver(async (_, { id }) => {
+    retrieveAccount: protectedResolver(async (_, { id }) => {
       return client.account.findUnique({ where: { id } });
     }),
   },
