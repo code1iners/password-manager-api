@@ -4,7 +4,7 @@ import { protectedResolver } from "../../users/users.utils";
 export default {
   Query: {
     /**
-     * ### Get my accounts.
+     * ### Get accounts.
      * @returns account list.
      */
     getAccounts: protectedResolver(async (_, { page }, { me }) => {
