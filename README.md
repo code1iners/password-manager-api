@@ -13,6 +13,6 @@ Simple password manager API server powered by Apollo graphql.
 
 - [x] Create Account.
 - [x] Update Account.
-- [x] Get Accounts.
+- [x] List Accounts.
 - [x] Retrieve Account.
 - [x] Delete Account.

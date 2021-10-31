@@ -1,22 +1,35 @@
 import client from "../../client";
-import { ERROR_MESSAGE_NOT_FOUND } from "../../constants";
+import {
+  ERROR_CODE_EMAIL_ALREADY_EXISTS,
+  ERROR_CODE_USERNAME_ALREADY_EXISTS,
+} from "../../constants";
 import bcrypt from "bcrypt";
 
 export default {
   Mutation: {
     signUp: async (_, { email, username, firstName, lastName, password }) => {
       try {
-        const foundUser = await client.user.findFirst({
-          where: {
-            OR: [{ email }, { username }],
-          },
+        const isEmailExists = await client.user.findFirst({
+          where: { email },
+          select: { id: true },
         });
         // check is valid email or username.
-        if (foundUser)
+        if (isEmailExists)
           return {
             ok: false,
-            error: `The user ${ERROR_MESSAGE_NOT_FOUND}`,
+            error: ERROR_CODE_EMAIL_ALREADY_EXISTS,
           };
+
+        const isUsernameExists = await client.user.findUnique({
+          where: { username },
+          select: { id: true },
+        });
+        if (isUsernameExists) {
+          return {
+            ok: false,
+            error: ERROR_CODE_USERNAME_ALREADY_EXISTS,
+          };
+        }
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -34,6 +47,7 @@ export default {
           ok: true,
         };
       } catch (e) {
+        console.error(e);
         return {
           ok: false,
           error: "Failed create a new account.",
