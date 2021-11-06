@@ -6,7 +6,7 @@ export default {
     createAccount: protectedResolver(
       async (
         _,
-        { title, subtitle, accountName, password, thumbnail },
+        { title, subtitle, accountName, accountPassword, thumbnail },
         { me }
       ) => {
         const res = await client.account.create({
@@ -14,7 +14,7 @@ export default {
             title,
             subtitle,
             accountName,
-            password,
+            accountPassword,
             user: {
               connect: {
                 id: me.id,

@@ -14,5 +14,13 @@ export default {
         skip: (page - 1) * 10,
       });
     }),
+
+    getAccountsWithPage: protectedResolver((_, { lastId }, { me }) => {
+      return client.user.findUnique({ where: { id: me.id } }).accounts({
+        take: 5,
+        skip: lastId ? 1 : 0,
+        ...(lastId && { cursor: { id: lastId } }),
+      });
+    }),
   },
 };

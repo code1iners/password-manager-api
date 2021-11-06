@@ -11,4 +11,9 @@ export default gql`
     ok: Boolean!
     error: String
   }
+
+  type AccountsResponse {
+    ok: Boolean!
+    accounts: [Account]
+  }
 `;

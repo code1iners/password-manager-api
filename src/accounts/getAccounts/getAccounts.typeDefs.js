@@ -4,4 +4,8 @@ export default gql`
   type Query {
     getAccounts(page: Int!): [Account]
   }
+
+  type Query {
+    getAccountsWithPage(lastId: Int): [Account]
+  }
 `;

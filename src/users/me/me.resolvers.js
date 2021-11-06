@@ -3,8 +3,8 @@ import { protectedResolver } from "../users.utils";
 
 export default {
   Query: {
-    me: protectedResolver((_, __, { me }) =>
-      client.user.findUnique({ where: { id: me.id } })
-    ),
+    me: protectedResolver((_, __, { me }) => {
+      return client.user.findUnique({ where: { id: me.id } });
+    }),
   },
 };
