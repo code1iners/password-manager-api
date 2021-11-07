@@ -8,6 +8,6 @@ export default gql`
       accountName: String!
       accountPassword: String!
       thumbnail: String
-    ): MutationResponse!
+    ): Account
   }
 `;

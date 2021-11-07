@@ -6,6 +6,6 @@ export default gql`
   }
 
   type Query {
-    getAccountsWithPage(lastId: Int): [Account]
+    accounts(offset: Int, take: Int): [Account]
   }
 `;

@@ -15,11 +15,15 @@ export default {
       });
     }),
 
-    getAccountsWithPage: protectedResolver((_, { lastId }, { me }) => {
-      return client.user.findUnique({ where: { id: me.id } }).accounts({
-        take: 5,
-        skip: lastId ? 1 : 0,
-        ...(lastId && { cursor: { id: lastId } }),
+    /**
+     * ### Accounts list.
+     * @returns {Array} [Account]
+     */
+    accounts: protectedResolver((_, { offset = 0, take = 10 }, { me }) => {
+      return client.account.findMany({
+        take,
+        skip: offset,
+        where: { userId: me.id },
       });
     }),
   },

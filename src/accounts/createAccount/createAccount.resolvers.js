@@ -4,12 +4,12 @@ import { protectedResolver } from "../../users/users.utils";
 export default {
   Mutation: {
     createAccount: protectedResolver(
-      async (
+      (
         _,
         { title, subtitle, accountName, accountPassword, thumbnail },
         { me }
       ) => {
-        const res = await client.account.create({
+        return client.account.create({
           data: {
             title,
             subtitle,
@@ -22,17 +22,6 @@ export default {
             },
           },
         });
-
-        if (res) {
-          return {
-            ok: true,
-          };
-        }
-
-        return {
-          ok: false,
-          error: "Create account failed.",
-        };
       }
     ),
   },
