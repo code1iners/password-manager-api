@@ -30,7 +30,7 @@ export default {
             `${process.cwd()}/thumbnails/${storeFilename}`
           );
           readStream.pipe(writeStream);
-          thumbnailUrl = `http://localhost:4000/static/${storeFilename}`;
+          thumbnailUrl = `http://121.161.239.148:4000/static/${storeFilename}`;
         }
 
         await client.account.update({

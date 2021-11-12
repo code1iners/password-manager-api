@@ -5,7 +5,7 @@ export default gql`
     id: Int!
     title: String!
     subtitle: String
-    thumbnail: Upload
+    thumbnail: String
     accountName: String!
     accountPassword: String!
     user: User!

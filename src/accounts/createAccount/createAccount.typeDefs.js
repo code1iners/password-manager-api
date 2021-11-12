@@ -7,7 +7,7 @@ export default gql`
       subtitle: String
       accountName: String!
       accountPassword: String!
-      thumbnail: String
-    ): Account
+      thumbnail: Upload
+    ): MutationResponse!
   }
 `;

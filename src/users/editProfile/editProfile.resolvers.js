@@ -20,7 +20,7 @@ export default {
             `${process.cwd()}/uploads/${storeFileName}`
           );
           readStream.pipe(writeStream);
-          avatarUrl = `http://localhost:4000/static/${storeFileName}`;
+          avatarUrl = `http://121.161.239.148:4000/static/${storeFileName}`;
         }
 
         // check password.
