@@ -23,7 +23,7 @@ export default {
           thumbnailUrl = `http://121.161.239.148:4000/static/${storeFileName}`;
         }
 
-        const createdAccount = await client.account.create({
+        return await client.account.create({
           data: {
             title,
             subtitle,
@@ -37,17 +37,6 @@ export default {
             ...(thumbnailUrl && { thumbnail: thumbnailUrl }),
           },
         });
-
-        if (createdAccount) {
-          return {
-            ok: true,
-          };
-        }
-
-        return {
-          ok: false,
-          error: "Create account failed.",
-        };
       }
     ),
   },

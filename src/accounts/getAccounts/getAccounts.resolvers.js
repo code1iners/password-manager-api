@@ -24,6 +24,9 @@ export default {
         take,
         skip: offset,
         where: { userId: me.id },
+        orderBy: {
+          createdAt: "desc",
+        },
       });
     }),
   },
