@@ -1,13 +1,14 @@
 import { createWriteStream } from "fs";
 import client from "../../client";
 import { protectedResolver } from "../../users/users.utils";
+import { saveImageIntoLocal } from "../../utils/ImageManager";
 
 export default {
   Mutation: {
     updateAccount: protectedResolver(
       async (
         _,
-        { id, title, subtitle, username, password, thumbnail },
+        { id, title, subtitle, accountName, accountPassword, thumbnail },
         { me }
       ) => {
         const foundAccountId = await client.account.findUnique({
@@ -23,30 +24,22 @@ export default {
 
         let thumbnailUrl;
         if (thumbnail) {
-          const { filename, createReadStream } = await thumbnail;
-          const storeFilename = `${me.id}-${Date.now()}-${filename}`;
-          const readStream = createReadStream();
-          const writeStream = createWriteStream(
-            `${process.cwd()}/thumbnails/${storeFilename}`
-          );
-          readStream.pipe(writeStream);
-          thumbnailUrl = `http://121.161.239.148:4000/static/${storeFilename}`;
+          thumbnailUrl = await saveImageIntoLocal({
+            id: me.id,
+            image: thumbnail,
+          });
         }
 
-        await client.account.update({
+        return client.account.update({
           where: { id },
           data: {
             title,
             subtitle,
-            username,
-            password,
+            accountName,
+            accountPassword,
             ...(thumbnailUrl && { thumbnail: thumbnailUrl }),
           },
         });
-
-        return {
-          ok: true,
-        };
       }
     ),
   },

@@ -6,9 +6,9 @@ export default gql`
       id: Int!
       title: String
       subtitle: String
-      username: String
-      password: String
+      accountName: String
+      accountPassword: String
       thumbnail: Upload
-    ): MutationResponse!
+    ): Account
   }
 `;

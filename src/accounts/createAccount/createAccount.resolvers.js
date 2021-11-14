@@ -1,6 +1,7 @@
 import { createWriteStream } from "fs";
 import client from "../../client";
 import { protectedResolver } from "../../users/users.utils";
+import { saveImageIntoLocal } from "../../utils/ImageManager";
 
 export default {
   Mutation: {
@@ -12,15 +13,11 @@ export default {
       ) => {
         let thumbnailUrl;
         if (thumbnail) {
-          const { filename, createReadStream } = await thumbnail;
-          const storeFileName = `${me.id}-${Date.now()}-${filename}`;
-          const readStream = createReadStream();
-          const writeStream = createWriteStream(
-            `${process.cwd()}/thumbnails/${storeFileName}`
-          );
-          readStream.pipe(writeStream);
-
-          thumbnailUrl = `http://121.161.239.148:4000/static/${storeFileName}`;
+          thumbnailUrl = await saveImageIntoLocal({
+            id: me.id,
+            image: thumbnail,
+          });
+          console.log(thumbnailUrl);
         }
 
         return await client.account.create({

@@ -44,6 +44,7 @@ export default {
       return {
         ok: true,
         token,
+        id: foundUser.id,
       };
     },
   },

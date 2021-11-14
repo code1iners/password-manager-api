@@ -2,25 +2,19 @@ import { createWriteStream } from "fs";
 import client from "../../client";
 import { protectedResolver } from "../users.utils";
 import bcrypt from "bcrypt";
+import { saveImageIntoLocal } from "../../utils/ImageManager";
 
 export default {
   Mutation: {
-    editProfile: protectedResolver(
+    updateProfile: protectedResolver(
       async (
         _,
-        { firstName, lastName, password: newPassword, avatar },
+        { firstName, lastName, username, email, password: newPassword, avatar },
         { me }
       ) => {
         let avatarUrl;
         if (avatar) {
-          const { filename, createReadStream } = await avatar;
-          const storeFileName = `${me.id}-${Date.now()}-${filename}`;
-          const readStream = createReadStream();
-          const writeStream = createWriteStream(
-            `${process.cwd()}/uploads/${storeFileName}`
-          );
-          readStream.pipe(writeStream);
-          avatarUrl = `http://121.161.239.148:4000/static/${storeFileName}`;
+          avatarUrl = await saveImageIntoLocal({ id: me.id, image: avatar });
         }
 
         // check password.
@@ -35,6 +29,8 @@ export default {
           data: {
             firstName,
             lastName,
+            username,
+            email,
             ...(hashedPassword && { password: hashedPassword }),
             ...(avatarUrl && { avatar: avatarUrl }),
           },
@@ -43,6 +39,7 @@ export default {
         if (updatedUser.id) {
           return {
             ok: true,
+            data: updatedUser,
           };
         } else {
           return {

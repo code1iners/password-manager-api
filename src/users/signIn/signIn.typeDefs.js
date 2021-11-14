@@ -4,6 +4,7 @@ export default gql`
   type SignInResponse {
     ok: Boolean!
     token: String
+    id: Int
     error: String
   }
   type Mutation {
