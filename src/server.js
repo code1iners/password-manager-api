@@ -40,12 +40,16 @@ const run = async () => {
     path: "/",
   });
 
-  console.log(process.env);
-
   await new Promise((resolve) => httpServer.listen({ port: PORT }, resolve));
-  console.info(
-    `🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`
-  );
+  if (process.env.NODE_ENV === "production") {
+    console.info(
+      `🚀 Server ready at https://password-manager-achacha-api.herokuapp.com:${PORT}${server.graphqlPath}`
+    );
+  } else {
+    console.info(
+      `🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`
+    );
+  }
 };
 
 run();
