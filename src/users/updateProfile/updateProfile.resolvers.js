@@ -2,7 +2,7 @@ import { createWriteStream } from "fs";
 import client from "../../client";
 import { protectedResolver } from "../users.utils";
 import bcrypt from "bcrypt";
-import { saveImageIntoLocal } from "../../utils/ImageManager";
+import { saveImageIntoS3 } from "../../utils/ImageManager";
 
 export default {
   Mutation: {
@@ -14,7 +14,11 @@ export default {
       ) => {
         let avatarUrl;
         if (avatar) {
-          avatarUrl = await saveImageIntoLocal({ id: me.id, image: avatar });
+          avatarUrl = await saveImageIntoS3({
+            id: me.id,
+            image: avatar,
+            directory: "profiles",
+          });
         }
 
         // check password.

@@ -1,7 +1,6 @@
-import { createWriteStream } from "fs";
 import client from "../../client";
 import { protectedResolver } from "../../users/users.utils";
-import { saveImageIntoLocal } from "../../utils/ImageManager";
+import { saveImageIntoS3 } from "../../utils/ImageManager";
 
 export default {
   Mutation: {
@@ -24,9 +23,10 @@ export default {
 
         let thumbnailUrl;
         if (thumbnail) {
-          thumbnailUrl = await saveImageIntoLocal({
+          thumbnailUrl = await saveImageIntoS3({
             id: me.id,
             image: thumbnail,
+            directory: "accounts",
           });
         }
 
