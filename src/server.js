@@ -17,6 +17,8 @@ const run = async () => {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
+    playground: true,
+    introspection: true,
     context: async (ctx) => {
       if (ctx.req) {
         const { authorization } = ctx.req.headers;
