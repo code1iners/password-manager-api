@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import {
   ERROR_INCORRECT_PASSWORD,
-  ERROR_USERNAME_NOT_FOUND,
+  ERROR_USER_NOT_FOUND,
 } from "../../constants";
 
 export default {
@@ -20,7 +20,7 @@ export default {
       if (!foundUser) {
         return {
           ok: false,
-          error: ERROR_USERNAME_NOT_FOUND,
+          error: ERROR_USER_NOT_FOUND,
         };
       }
 

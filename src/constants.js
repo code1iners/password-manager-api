@@ -4,4 +4,4 @@ export const ERROR_NOT_FOUND = "Not found.";
 export const ERROR_INCORRECT_PASSWORD = "Incorrect password.";
 export const ERROR_EMAIL_ALREADY_EXISTS = "The email is already exists.";
 export const ERROR_USERNAME_ALREADY_EXISTS = "The username is already exists.";
-export const ERROR_USERNAME_NOT_FOUND = "The username not exists.";
+export const ERROR_USER_NOT_FOUND = "The user does not exists.";
