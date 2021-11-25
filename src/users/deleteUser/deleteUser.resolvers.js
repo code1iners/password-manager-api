@@ -1,5 +1,5 @@
 import client from "../../client";
-import { ERROR_CODE_NOT_FOUND } from "../../constants";
+import { ERROR_NOT_FOUND } from "../../constants";
 import { protectedResolver } from "../users.utils";
 
 export default {
@@ -13,7 +13,7 @@ export default {
       if (!myId) {
         return {
           ok: false,
-          error: ERROR_CODE_NOT_FOUND,
+          error: ERROR_NOT_FOUND,
         };
       }
 
@@ -32,7 +32,7 @@ export default {
       } else {
         return {
           ok: false,
-          error: ERROR_CODE_NOT_FOUND,
+          error: ERROR_NOT_FOUND,
         };
       }
     }),

@@ -1,10 +1,7 @@
 import client from "../../client";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import {
-  ERROR_CODE_INCORRECT_PASSWORD,
-  ERROR_CODE_NOT_FOUND,
-} from "../../constants";
+import { ERROR_INCORRECT_PASSWORD, ERROR_NOT_FOUND } from "../../constants";
 
 export default {
   Mutation: {
@@ -20,7 +17,7 @@ export default {
       if (!foundUser) {
         return {
           ok: false,
-          error: ERROR_CODE_NOT_FOUND,
+          error: ERROR_NOT_FOUND,
         };
       }
 
@@ -32,7 +29,7 @@ export default {
       if (!passwordIsValid) {
         return {
           ok: false,
-          error: ERROR_CODE_INCORRECT_PASSWORD,
+          error: ERROR_INCORRECT_PASSWORD,
         };
       }
 

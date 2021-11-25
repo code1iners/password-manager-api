@@ -1,7 +1,7 @@
 import client from "../../client";
 import {
-  ERROR_CODE_EMAIL_ALREADY_EXISTS,
-  ERROR_CODE_USERNAME_ALREADY_EXISTS,
+  ERROR_EMAIL_ALREADY_EXISTS,
+  ERROR_USERNAME_ALREADY_EXISTS,
 } from "../../constants";
 import bcrypt from "bcrypt";
 
@@ -17,7 +17,7 @@ export default {
         if (isEmailExists)
           return {
             ok: false,
-            error: ERROR_CODE_EMAIL_ALREADY_EXISTS,
+            error: ERROR_EMAIL_ALREADY_EXISTS,
           };
 
         const isUsernameExists = await client.user.findUnique({
@@ -27,7 +27,7 @@ export default {
         if (isUsernameExists) {
           return {
             ok: false,
-            error: ERROR_CODE_USERNAME_ALREADY_EXISTS,
+            error: ERROR_USERNAME_ALREADY_EXISTS,
           };
         }
 
