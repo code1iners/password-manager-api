@@ -9,6 +9,6 @@ export default gql`
       accountName: String
       accountPassword: String
       thumbnail: Upload
-    ): Account
+    ): AccountResponse!
   }
 `;

@@ -30,7 +30,7 @@ export default {
           });
         }
 
-        return client.account.update({
+        const updatedAccount = client.account.update({
           where: { id },
           data: {
             title,
@@ -40,6 +40,11 @@ export default {
             ...(thumbnailUrl && { thumbnail: thumbnailUrl }),
           },
         });
+
+        return {
+          ok: true,
+          data: updatedAccount,
+        };
       }
     ),
   },

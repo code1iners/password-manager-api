@@ -10,29 +10,43 @@ export default {
         { title, subtitle, accountName, accountPassword, thumbnail },
         { me }
       ) => {
-        let thumbnailUrl;
-        if (thumbnail) {
-          thumbnailUrl = await saveImageIntoS3({
-            id: me.id,
-            image: thumbnail,
-            directory: "accounts",
-          });
-        }
+        try {
+          let thumbnailUrl;
+          if (thumbnail) {
+            thumbnailUrl = await saveImageIntoS3({
+              id: me.id,
+              image: thumbnail,
+              directory: "accounts",
+            });
+          }
 
-        return await client.account.create({
-          data: {
-            title,
-            subtitle,
-            accountName,
-            accountPassword,
-            user: {
-              connect: {
-                id: me.id,
+          const createdAccount = await client.account.create({
+            data: {
+              title,
+              subtitle,
+              accountName,
+              accountPassword,
+              user: {
+                connect: {
+                  id: me.id,
+                },
               },
+              ...(thumbnailUrl && { thumbnail: thumbnailUrl }),
             },
-            ...(thumbnailUrl && { thumbnail: thumbnailUrl }),
-          },
-        });
+          });
+
+          return {
+            ok: true,
+            data: createdAccount,
+          };
+        } catch (error) {
+          console.error("[createAccount]", error);
+
+          return {
+            ok: false,
+            error: "Failed create account.",
+          };
+        }
       }
     ),
   },

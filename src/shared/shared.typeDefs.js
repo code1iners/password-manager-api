@@ -18,6 +18,12 @@ export default gql`
     data: User
   }
 
+  type AccountResponse {
+    ok: Boolean!
+    error: String
+    data: Account
+  }
+
   type AccountsResponse {
     ok: Boolean!
     accounts: [Account]
